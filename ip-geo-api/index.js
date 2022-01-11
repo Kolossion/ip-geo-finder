@@ -1,9 +1,11 @@
 require('dotenv').config()
 const Koa = require('koa');
+const cors = require('@koa/cors')
 const router = require('@koa/router');
 const Reader = require('@maxmind/geoip2-node').Reader;
 
 const app = new Koa();
+app.use(cors({ origin: '*' }));
 
 const r = router();
 r.get('/location/:ip', async (ctx, next) => {
@@ -23,10 +25,10 @@ r.get('/location/:ip', async (ctx, next) => {
         const { latitude, longitude } = readRes.location
         ctx.body = { latitude, longitude }
     } catch(error) {
-        err = 'lol'
+        ctx.throw(error.status, error.message)
     }
-    next(err)
-})
+    // next(err)
+});
 
-app.use(r.routes())
-app.listen(3000);
+app.use(r.routes());
+app.listen(4000);
