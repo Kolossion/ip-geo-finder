@@ -1,7 +1,8 @@
 FROM node:17-alpine
-WORKDIR /usr/src/app
+WORKDIR /usr/src/api
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 4000
-CMD [ "node", "./index.js"]
+# NOTE: Port being handled by docker-compose
+# EXPOSE 4000
+CMD [ "npm", "start"]

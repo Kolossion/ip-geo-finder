@@ -3,11 +3,27 @@ services:
   ip-geo-api:
     build: ./ip-geo-api
     container_name: ip-geo-api
+    restart: always
+    environment:
+      - PORT=${API_PORT}
     ports: 
-      - 4000:4000
+      - ${API_PORT}:${API_PORT}
 
+    # NOTE: Couldn't get to work...
+    # volumes:
+    #   - ./ip-geo-api:/usr/src/api
+    #   - /usr/src/api/node_modules
   ip-geo-ui:
     build: ./ip-geo-ui
     container_name: ip-geo-ui
+    restart: always
+    environment:
+      - PORT=${UI_PORT}
+      - REACT_APP_API_PORT=${API_PORT}
     ports:
-      - 3000:3000
+      - ${UI_PORT}:${UI_PORT}
+
+    # NOTE: Couldn't get to work...
+    # volumes:
+    #   - ./ip-geo-ui/src:/usr/src/app/src
+    #   - ./ip-geo-ui/public:/usr/src/app/public

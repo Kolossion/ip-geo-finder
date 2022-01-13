@@ -1,3 +1,7 @@
-.location-form {
-    background-color: gray;
+.location-inputs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
