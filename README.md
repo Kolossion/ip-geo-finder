@@ -14,3 +14,9 @@ Note that if running the applications individually, they will have to have their
 ## Testing
 
 Currently only the API has tests. They can be run using `npm test`. These tests check for the basic cases around the `/location/:ip` endpoint: Valid, Invalid formatting (basically anything not an IP address), and Not in DB.
+
+For the front-end, the same test cases can be used, but must be run through the front-end itself (manual). The following values can be used to test:
+
+Valid: `8.8.8.8`
+Invalid: `Any string`
+Not in DB: `192.168.1.1`
