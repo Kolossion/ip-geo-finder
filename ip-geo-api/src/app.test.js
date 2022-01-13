@@ -11,18 +11,19 @@ test("Retrieve Lat/Long with valid IP", async () => {
 })
 
 test("Return 400 on invalid IP format", async () => {
-    const ip = "8.8.8";
-    const res = await request(app.callback()).get(`/location/${ip}`);
+    const wrongVals = ["8.8.8", "8", "hello", "3.2.a.3"];
+    wrongVals.forEach(async (wrongVal) => {
+        const res = await request(app.callback()).get(`/location/${wrongVal}`);
 
-    expect(res.status).toBe(400);
-    expect(res.text).toBe('Improper IP address format (IPv4)')
+        expect(res.status).toBe(400);
+        expect(res.text).toBe('Improper IP address format (IPv4)')
+    });
 })
 
 test("Return 500 on IP not in database", async () => {
     const ip = "192.168.1.1";
     const res = await request(app.callback()).get(`/location/${ip}`);
 
-    console.log("RES", res)
     expect(res.status).toBe(404);
     expect(res.text).toBe(`The address ${ip} is not in the database`)
 })

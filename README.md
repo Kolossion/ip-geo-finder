@@ -7,6 +7,10 @@ The root of the project contains a `.env` file that can be used to change the po
 
 ## Running
 
-`docker-compose up` will run both applications and allow you to access the front-end from `localhost:3000`. I was unfortunately unable to get development while the containers are running working due to my lack of knowledge around Docker volumes. Each individual piece can be run from their respective folders. `ip-geo-api` uses `node ./index.js` and `ip-geo-ui`
+`docker-compose up` will run both applications and allow you to access the front-end from `localhost:3000`. I was unfortunately unable to get the containers to hot-reload when files are changed due to my lack of knowledge around Docker volumes. Each individual piece can be run from their respective folders. Both projects use `npm start` to run in development mode. Running things this way will allow for hot-reloading on both the API and the UI.
 
 Note that if running the applications individually, they will have to have their own `.env` files. These files are provided with default values in the repository.
+
+## Testing
+
+Currently only the API has tests. They can be run using `npm test`. These tests check for the basic cases around the `/location/:ip` endpoint: Valid, Invalid formatting (basically anything not an IP address), and Not in DB.
