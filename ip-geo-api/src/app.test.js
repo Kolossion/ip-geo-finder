@@ -20,7 +20,7 @@ test("Return 400 on invalid IP format", async () => {
     });
 })
 
-test("Return 500 on IP not in database", async () => {
+test("Return 404 on IP not in database", async () => {
     const ip = "192.168.1.1";
     const res = await request(app.callback()).get(`/location/${ip}`);
 
